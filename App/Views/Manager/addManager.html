@@ -1,0 +1,228 @@
+{% extends "partitions/layout.html"%} {% block body %}
+{% include "partitions/notification.html" %}
+<section class="wrapper">
+    <div class="inner">
+        <header class="special">
+            <div class="pull-left">
+                {% if manager %}
+                <h2>Edit Manager Management</h2>
+                {% else %}
+                <h2>Add Manager Management</h2>
+                {% endif %}
+            </div>
+        </header>
+        <div class="highlights">
+
+                        <div class="form-wrap">
+                            {% if manager %}
+                            <form method="POST" action="/managerEdit/{{manager._id}}" class="form">                   
+                            {% else %}
+                            <form method="POST" action="/managerAdd" class="form">        
+                            {% endif %}
+                            
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Name :- </label>
+                                <div class="col-sm-12">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" required name="name" value="{{manager.managerName}}" data-validation="length alphanumric" data-validation-error-msg="Name is Required">
+                                    </div>
+                                </div>
+                            </div>
+
+                            
+                            <br>
+                            <br>
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Email :- </label>
+                                <div class="col-sm-12">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" required name="email" value="{{manager.email}}" data-validation="email">
+                                    </div>
+                                </div>
+                            </div>
+
+                            
+                            <br>
+                            <br>
+
+                            <div class="form-group">
+                                    <label class="col-sm-3 control-label"> Give Permissions:- </label>
+                                    <div class="col-sm-12">
+                                        <div class="input-group check">
+                                        <input type="checkbox" name="isPermissionYes" id="isPermissionYes"  value="yes" {{"checked" if manager.isPermission == true else "" }} >
+                                        <label for="isPermissionYes">Yes</label>
+                                        <input type="checkbox" name="isPermissionNo" id="isPermissionNo" value="no" {{"checked" if manager.isPermission == false else "" }}>  
+                                        <label for="isPermissionNo">No</label>
+                                        </div>
+                                    </div>
+                            </div>
+
+                            <br>
+                            <br>
+
+                            <div class="form-group showDiv" >
+                                <label class="col-sm-3 control-label"> Permissions:- </label>
+                                <div class="col-sm-12">
+                                    
+                                    <div>
+                                        <label>View :- </label>
+                                        <div class="input-group isView">
+                                            <input type="checkbox" name="isViewYes" id="isViewYes"  value="yes" {{"checked" if manager.isView == true else "" }} >
+                                            <label for="isViewYes">Yes</label>
+                                            <input type="checkbox" name="isViewNo" id="isViewNo" value="no" {{"checked" if manager.isView == false else "" }}>  
+                                            <label for="isViewNo">No</label>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <label>Add :- </label>
+                                        <div class="input-group isAdd">
+                                            <input type="checkbox" name="isAddYes" id="isAddYes"  value="yes" {{"checked" if manager.isAdd == true else "" }} >
+                                            <label for="isAddYes">Yes</label>
+                                            <input type="checkbox" name="isAddNo" id="isAddNo" value="no" {{"checked" if manager.isAdd == false else "" }}>  
+                                            <label for="isAddNo">No</label>
+                                        </div>
+                                    </div>
+
+
+                                    <div>
+                                        <label>Update :- </label>
+                                        <div class="input-group isUpdate">
+                                            <input type="checkbox" name="isUpdateYes" id="isUpdateYes"  value="yes" {{"checked" if manager.isUpdate == true else "" }} >
+                                            <label for="isUpdateYes">Yes</label>
+                                            <input type="checkbox" name="isUpdateNo" id="isUpdateNo" value="no" {{"checked" if manager.isUpdate == false else "" }}>  
+                                            <label for="isUpdateNo">No</label>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <label>Delete :- </label>
+                                        <div class="input-group isDelete">
+                                            <input type="checkbox" name="isDeleteYes" id="isDeleteYes"  value="yes" {{"checked" if manager.isDelete == true else "" }} >
+                                            <label for="isDeleteYes">Yes</label>
+                                            <input type="checkbox" name="isDeleteNo" id="isDeleteNo" value="no" {{"checked" if manager.isDelete == false else "" }}>  
+                                            <label for="isDeleteNo">No</label>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+
+                            <br>
+                            <br>
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">New Password :- </label>
+                                <div class="col-sm-12">
+                                    <div class="input-group">
+                                        <input type="password" class="form-control" required name="password" id="password"  data-minlength="6">
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <div class="registrationFormAlert" style="color: red;" id="CheckPasswordMatch"></div>
+                            
+                            <br>
+                            <br>
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Confirm Password :- </label>
+                                <div class="col-sm-12">
+                                    <div class="input-group">
+                                        <input type="password" class="form-control" required name="confirmpwd"  id="confirmpwd"  data-minlength="6">
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+
+                            <br>
+                            <div class="form-group col-sm-3">
+                                <div class="col-sm-offset-3 col-sm-9">
+                                    <input type="submit" class="btn btn-success btn-flat" value="submit">
+                                    <a href="/manager" class="btn btn-danger btn-flat">Cancel</a>
+                                </div>
+                            </div>
+
+                            </form>
+                        </div>
+        </div>
+
+    </div>
+</section>
+{% endblock %}
+{% block Jscript %}
+<script>
+
+$('input[type="submit"]').attr('disabled','disabled');
+
+    function checkPasswordMatch(){
+        let password=$('#password').val();
+        let confirm=$("#confirmpwd").val();
+        if(password !=confirm){
+            $("#CheckPasswordMatch").html("Password does not match");
+            $("#CheckPasswordMatch").css("color","red");
+        }else{
+            $("#CheckPasswordMatch").html("Password match");
+            $("#CheckPasswordMatch").css("color","green");
+            setTimeout(function(){
+                $("#CheckPasswordMatch").html("");
+            },500);
+            $('input[type="submit"]').removeAttr('disabled');
+        }
+    }
+
+    $(document).ready(function(){
+
+        $('.showDiv').hide();
+
+        let checkPermissions='{{manager.isPermission}}'
+        if(checkPermissions=='true'){
+            $('.showDiv').show();
+        }else{
+            $('.showDiv').hide();
+        }
+
+        let password=$('#password').val();
+        let confirm=$("#confirmpwd").val();
+        $("#password").keyup(checkPasswordMatch);
+        $("#confirmpwd").keyup(checkPasswordMatch);
+
+
+        $('.check input:checkbox').click(function(){
+            $('.check input:checkbox').not(this).prop('checked',false);
+            let know=$('.check input:checkbox:checked').val();
+            if(know=='yes'){
+                $('.showDiv').show();
+            }else{
+                $('.showDiv').hide();
+            }
+        });
+
+        $('.isView input:checkbox').click(function(){
+            $('.isView input:checkbox').not(this).prop('checked',false);
+        });
+
+        $('.isAdd input:checkbox').click(function(){
+            $('.isAdd input:checkbox').not(this).prop('checked',false);
+        });
+
+
+        $('.isUpdate input:checkbox').click(function(){
+            $('.isUpdate input:checkbox').not(this).prop('checked',false);
+        });
+
+
+        $('.isDelete input:checkbox').click(function(){
+            $('.isDelete input:checkbox').not(this).prop('checked',false);
+        });
+
+
+    });
+
+</script>
+
+{% endblock %}
+

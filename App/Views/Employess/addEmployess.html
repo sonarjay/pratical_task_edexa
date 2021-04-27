@@ -1,0 +1,61 @@
+{% extends "partitions/layout.html"%} {% block body %}
+{% include "partitions/notification.html" %}
+<section class="wrapper">
+    <div class="inner">
+        <header class="special">
+            <div class="pull-left">
+                {% if employee %}
+                <h2>Edit Employee Management</h2>
+                {% else %}
+                <h2>Add Employee Management</h2>
+                {% endif %}
+            </div>
+        </header>
+        <div class="highlights">
+  
+                        <div class="form-wrap">
+                            {% if employee %}
+                            <form method="POST" action="/employeeEdit/{{employee._id}}" class="form">                   
+                            {% else %}
+                            <form method="POST" action="/employeeAdd" class="form">        
+                            {% endif %}
+                            
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Name :- </label>
+                                <div class="col-sm-12">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" required name="name" value="{{employee.empName}}" data-validation="length alphanumric" data-validation-error-msg="Name is Required">
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Email :- </label>
+                                <div class="col-sm-12">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" required name="email" value="{{employee.email}}" data-validation="email">
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="form-group col-sm-3">
+                                <div class="col-sm-offset-3 col-sm-9">
+                                    <input type="submit" class="btn btn-success btn-flat" value="submit">
+                                    <a href="/employee" class="btn btn-danger btn-flat">Cancel</a>
+                                </div>
+                            </div>
+
+                            </form>
+                        </div>
+        </div>
+
+    </div>
+</section>
+{% endblock %}
+{% block Jscript %}
+<script>
+
+</script>
+
+{% endblock %}
+

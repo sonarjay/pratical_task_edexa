@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html lang=en>
+{%include "partitions/head.html"%}
+
+<body class="is-preload">
+    {%include "partitions/header.html"%} {%include "partitions/navigation.html"%}
+
+    {% block body %} {% endblock %}
+
+
+    {%include "partitions/footer.html"%}
+    {% block Jscript %} {% endblock %}
+    <!-- Scripts -->
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/browser.min.js"></script>
+<script src="/assets/js/breakpoints.min.js"></script>
+<script src="/assets/js/util.js"></script>
+<script src="/assets/js/main.js"></script>
+</body>
+</html>

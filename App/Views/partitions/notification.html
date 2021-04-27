@@ -1,0 +1,22 @@
+<!-- {% if success|length > 0  %}
+<div class="alert alert-success alert-dimssable notification">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>{{success}}
+</div>
+{% endif %}
+{% if error|length > 0  %}
+<div class="alert alert-danger alert-dimssable notification">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>{{error}}
+</div>
+{% endif %}
+<script>
+    let check='{{success}}'
+    let check1='{{error}}'
+    console.log("check",check,"check1",check1);
+    setTimeout(function(){
+        $('.notification').slideUp('show');
+        var removeEle=$('.notification');
+        setTimeout(function(){
+            removeEle.remove();
+        },1000);
+    },5000)
+</script> -->
