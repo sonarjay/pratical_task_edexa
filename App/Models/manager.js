@@ -1,0 +1,40 @@
+const mongoose =require('mongoose');
+const Schema=mongoose.Schema;
+const managerSchema=new Schema({
+managerId:{
+        type:'string',
+},
+managerName:{
+    type:'string',
+},
+email:{
+    type:'string',
+},
+password:{
+    type:'string',
+},
+parentId:{
+    type:'string',
+},
+isPermission:{
+    type:'boolean',
+    default:false
+},
+isView:{
+    type:'boolean',
+    default:false
+},
+isUpdate:{
+    type:'boolean',
+    default:false
+},
+isDelete:{
+    type:'boolean',
+    default:false
+},
+isAdd:{
+    type:'boolean',
+    default:false
+},
+},{collection:'manager'});
+mongoose.model('manager',managerSchema);

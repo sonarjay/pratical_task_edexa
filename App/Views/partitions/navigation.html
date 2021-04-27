@@ -1,0 +1,26 @@
+
+		<!-- Nav -->
+			<nav id="menu">
+				<ul class="links">
+					{% if session.role =='admin' %}
+					<li><a href="/dashboard">Home</a></li>
+					<li><a href="/manager">Manager Management</a></li>
+					<li><a href="/teamlead">Team Lead Management</a></li>
+					<li><a href="/employee">Employee Management</a></li>
+					<li><a href="/logout">Log Out</a></li>
+					{% elif session.role=='manager' %}
+					<li><a href="/dashboard">Home</a></li>
+						{% if session.isPermission ==true %}
+							<li><a href="/employee">Employee Management</a></li>
+						{% endif %}
+					<li><a href="/logout">Log Out</a></li>
+					{% elif session.role=='teamlead' %}
+					<li><a href="/dashboard">Home</a></li>
+						{% if session.isPermission ==true %}
+							<li><a href="/employee">Employee Management</a></li>
+						{% endif %}
+					<li><a href="/logout">Log Out</a></li>
+					{% endif %}
+				</ul>
+			</nav>
+			

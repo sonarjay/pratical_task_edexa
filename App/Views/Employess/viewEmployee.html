@@ -1,0 +1,57 @@
+{% extends "partitions/layout.html"%} {% block body %}
+{% include "partitions/notification.html" %}
+<section class="wrapper">
+    <div class="inner">
+        <header class="special">
+            <div class="pull-left">
+                <h2>View Employee Management</h2>
+            </div>
+        </header>
+        <div class="highlights">
+
+                        <div class="form-wrap">
+
+                            <form method="POST" action="/#" class="form">        
+                  
+                            
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Name :- </label>
+                                <div class="col-sm-12">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" readolny disabled required name="name" value="{{employee.empName}}" data-validation="length alphanumric" data-validation-error-msg="Name is Required">
+                                    </div>
+                                </div>
+                            </div>
+
+                            
+                            <br>
+                            <br>
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Email :- </label>
+                                <div class="col-sm-12">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" readolny disabled required name="email" value="{{employee.email}}" data-validation="email">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-sm-3">
+                                <div class="col-sm-offset-3 col-sm-9">
+                                    <a href="/employee" class="btn btn-danger btn-flat">Cancel</a>
+                                </div>
+                            </div>
+
+                            </form>
+                        </div>
+        </div>
+
+    </div>
+</section>
+{% endblock %}
+{% block Jscript %}
+<script>
+</script>
+
+{% endblock %}
+

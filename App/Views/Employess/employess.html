@@ -1,0 +1,130 @@
+{% extends "partitions/layout.html"%} {% block body %}
+{% include "partitions/notification.html" %}
+<section class="wrapper">
+    <div class="inner">
+        <header class="special">
+            <div class="pull-left">
+            <h2>Employee Management Table</h2>
+            </div>
+            <div class="pull-right">
+                {% if isAdd==true %}
+                    <a href="/addEmployee"><button type="button" class="btn btn-primary"><i class="fa fa-plus"></i>Add Employee</button></a>
+                {% else %}
+                <h2> [ No Permission Add ] </h2>
+                {% endif %}
+            </div>
+        </header>
+        <div class="special">
+
+            <div class="panel-wrapper collapse in">
+                <div class=panel-body>
+                    <div class="table-wrap">
+                        <div class="table-responsive">
+                            <table id="myTable" class="table table-hover display pb-30">
+                                <thead>
+                                    <tr>
+                                        <th>Emp Id</th>
+                                        <th>Emp Name</th>
+                                        <th>Email</th>
+                                        <th>Created Name</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+{% block Jscript %}
+
+<script>
+
+    $(document).ready(function(){
+        $.noConflict();
+
+        let isView='{{isView}}';
+        let isUpdate='{{isUpdate}}';
+        let isDelete='{{isDelete}}';
+
+        var host = window.location.origin;
+        let table=$('#myTable').DataTable({
+            searching: false,
+            ordering: false,  
+            processing:true,
+            serverSide:true,
+            autoWidth:false,
+            lengthChange: false,
+            ajax:{
+                url:host+"/getEmployeeList",
+                type:"GET"
+            },
+            columns:[{
+                "data":"empId"
+            },{
+                "data":"empName"
+            },{
+                "data":"email"
+            },
+            {
+                "data":"parentName"
+            },{
+                "data":"action",
+                render:function(data,type,row){
+                    let html='';
+
+                    if(isView=='true'){
+                        html+=`<a href="/viewEmployee/`+ row._id +` "><button type="button" class="btn btn-info btn-xs btn-rounded" title="View" name="View"><i class="fa fa-eye" araia-hidden="true"></i></button></a>`;
+                    }else{
+                        html+='[ No Permission View ]'
+                    }
+                  
+                    if(isUpdate=='true'){
+                        html+=`<a href="/employeeEdit/`+ row._id +` "><button type="button" class="btn btn-warning btn-xs btn-rounded" title="edit" name="edit"><i class="fa fa-edit" araia-hidden="true"></i></button></a>`;
+                    }else{
+                        html+='[ No Permission Update ]'
+                    }    
+
+                    if(isDelete=='true'){
+                        html+=`<button type="button" id="`+ row._id +`" class="btn btn-warning btn-xs delete btn-rounded" title="delete" name="delete"><i class="fa fa-trash" araia-hidden="true"></i></button>`
+                    }else{
+                        html+='[ No Permission Delete ]'
+                    }  
+                    
+                    return html;
+                }
+            }]
+        });
+
+        $('body').on('click','.delete',function(e){
+            var id=$(this).attr('id');
+            var thisEml=this;
+
+            $.ajax({
+                        type:'POST',
+                        url:host+"/getDeleteEmployee",
+                        data:{
+                            id:id
+                        },
+                        success:function(result){
+                            console.log("result",result);
+                            if(result=='success'){
+                                $(thisEml).parent().parent().hide(700);
+                                table.ajax.reload();
+                            }
+                       }
+                });
+
+        });
+
+
+      
+            
+    });
+</script>
+{% endblock %}

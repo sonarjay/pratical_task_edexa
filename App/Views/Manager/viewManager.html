@@ -1,0 +1,139 @@
+{% extends "partitions/layout.html"%} {% block body %}
+{% include "partitions/notification.html" %}
+<section class="wrapper">
+    <div class="inner">
+        <header class="special">
+            <div class="pull-left">
+                <h2>View Manager Management</h2>
+            </div>
+        </header>
+        <div class="highlights">
+                        <div class="form-wrap">
+
+                            <form method="POST" action="/#" class="form">        
+                  
+                            
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Name :- </label>
+                                <div class="col-sm-12">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" readolny disabled required name="name" value="{{manager.managerName}}" data-validation="length alphanumric" data-validation-error-msg="Name is Required">
+                                    </div>
+                                </div>
+                            </div>
+
+                            
+                            <br>
+                            <br>
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Email :- </label>
+                                <div class="col-sm-12">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" readolny disabled required name="email" value="{{manager.email}}" data-validation="email">
+                                    </div>
+                                </div>
+                            </div>
+
+                            
+                            <br>
+                            <br>
+
+                            <div class="form-group">
+                                    <label class="col-sm-3 control-label"> Give Permissions:- </label>
+                                    <div class="col-sm-12">
+                                        <div class="input-group check">
+                                        <input type="checkbox" name="isPermissionYes" readolny disabled id="isPermissionYes"  value="yes" {{"checked" if manager.isPermission == true else "" }} >
+                                        <label for="isPermissionYes">Yes</label>
+                                        <input type="checkbox" name="isPermissionNo" readolny disabled id="isPermissionNo" value="no" {{"checked" if manager.isPermission == false else "" }}>  
+                                        <label for="isPermissionNo">No</label>
+                                        </div>
+                                    </div>
+                            </div>
+
+                            <br>
+                            <br>
+
+                            <div class="form-group showDiv" >
+                                <label class="col-sm-3 control-label"> Permissions:- </label>
+                                <div class="col-sm-12">
+                                    
+                                    <div>
+                                        <label>View :- </label>
+                                        <div class="input-group isView">
+                                            <input type="checkbox" name="isViewYes" readolny disabled id="isViewYes"  value="yes" {{"checked" if manager.isView == true else "" }} >
+                                            <label for="isViewYes">Yes</label>
+                                            <input type="checkbox" name="isViewNo" readolny disabled id="isViewNo" value="no" {{"checked" if manager.isView == false else "" }}>  
+                                            <label for="isViewNo">No</label>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <label>Add :- </label>
+                                        <div class="input-group isAdd">
+                                            <input type="checkbox" name="isAddYes" readolny disabled id="isAddYes"  value="yes" {{"checked" if manager.isAdd == true else "" }} >
+                                            <label for="isAddYes">Yes</label>
+                                            <input type="checkbox" name="isAddNo" readolny disabled id="isAddNo" value="no" {{"checked" if manager.isAdd == false else "" }}>  
+                                            <label for="isAddNo">No</label>
+                                        </div>
+                                    </div>
+
+
+                                    <div>
+                                        <label>Update :- </label>
+                                        <div class="input-group isUpdate">
+                                            <input type="checkbox" name="isUpdateYes" readolny disabled id="isUpdateYes"  value="yes" {{"checked" if manager.isUpdate == true else "" }} >
+                                            <label for="isUpdateYes">Yes</label>
+                                            <input type="checkbox" name="isUpdateNo" readolny disabled id="isUpdateNo" value="no" {{"checked" if manager.isUpdate == false else "" }}>  
+                                            <label for="isUpdateNo">No</label>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <label>Delete :- </label>
+                                        <div class="input-group isDelete">
+                                            <input type="checkbox" name="isDeleteYes" readolny disabled id="isDeleteYes"  value="yes" {{"checked" if manager.isDelete == true else "" }} >
+                                            <label for="isDeleteYes">Yes</label>
+                                            <input type="checkbox" name="isDeleteNo" readolny disabled id="isDeleteNo" value="no" {{"checked" if manager.isDelete == false else "" }}>  
+                                            <label for="isDeleteNo">No</label>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            
+                            <br>
+
+                            <div class="form-group col-sm-3">
+                                <div class="col-sm-offset-3 col-sm-9">
+                                    <a href="/manager" class="btn btn-danger btn-flat">Cancel</a>
+                                </div>
+                            </div>
+
+                            </form>
+                        </div>
+        </div>
+
+    </div>
+</section>
+{% endblock %}
+{% block Jscript %}
+<script>
+
+    $(document).ready(function(){
+
+        $('.showDiv').hide();
+
+        let checkPermissions='{{manager.isPermission}}'
+        if(checkPermissions=='true'){
+            $('.showDiv').show();
+        }else{
+            $('.showDiv').hide();
+        }
+
+    });
+
+</script>
+
+{% endblock %}
+
